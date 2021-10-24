@@ -1,0 +1,22 @@
+<%= form_with(model: category) do |form| %>
+  <% if category.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(category.errors.count, "error") %> prohibited this category from being saved:</h2>
+
+      <ul>
+        <% category.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= form.text_field :category_name, class: "form-control", placeholder: "Category Name" %>
+  </div>
+
+  <br />
+  <div class="d-grid gap-2 actions">
+    <%= form.submit class: "btn btn-lg btn-primary"%>
+  </div>
+<% end %>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>MY BOOKSTORE</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'bootstrap.min', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+  <script type="text/javascript">
+    function hideAlert() {
+      const divAlert = document.getElementById("divAlert")
+      divAlert.setAttribute('style', 'display: none');
+    }
+  </script>
+  <body>
+    <%= render 'home/header' %>
+    <% if (notice) %>
+      <div id="divAlert" class="alert alert-dark alert-dismissible fade show" role="alert">
+        <strong><%= notice %></strong>
+        <button onclick="hideAlert()" type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    <% end %>
+    <div class="container">
+      <%= yield %>
+    </div>
+  </body>
+</html>

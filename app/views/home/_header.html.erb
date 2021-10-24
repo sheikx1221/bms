@@ -1,0 +1,44 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/">MY BOOKSTORE</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarColor01">
+      <ul class="navbar-nav me-auto">
+        <% if admin_signed_in? %>
+          <li class="nav-item">
+            <%= link_to 'Add New Book', new_book_path, class: "nav-link" %>
+          </li>   
+          <li class="nav-item">
+            <%= link_to 'Add New Category', new_category_path, class: "nav-link" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to 'View Categories', categories_path, class: "nav-link" %>
+          </li>                   
+        <% else %>
+          <li class="nav-item">
+            <%= link_to '/#', :class => 'nav-link active' do %>
+              Home<span class="visually-hidden">(current)</span>
+            <% end %>
+          </li>
+          <li class="nav-item">
+            <%= link_to '/categories', :class => 'nav-link active' do %>
+              Categories<span class="visually-hidden">(current)</span>
+            <% end %>
+          </li>
+<!--           <li class="nav-item">
+            <%= link_to 'About us', home_about_path, class: "nav-link" %>
+          </li> -->
+        <% end %>
+      </ul>
+      <%= form_tag(category_search_path, :method => "get") do %>
+        <div class="d-flex">
+          <%= text_field :category_name, placeholder="Search", class: "form-control me-sm-2" %>
+          <%= button_tag "Search", :class => "btn btn-secondary my-2 my-sm-0", :name => nil %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</nav>
